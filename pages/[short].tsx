@@ -7,11 +7,14 @@ export default function RedirectPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (router.isReady && short) {  // ✅ Warten bis Router bereit ist!
-      fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/${short}`)
+    if (router.isReady && short) {
+      fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/${short}`, {
+        method: "GET",
+        redirect: "follow", // ✅ Automatische Weiterleitung aktivieren
+      })
         .then((res) => {
-          if (res.redirected) {
-            window.location.href = res.url;
+          if (res.ok) {
+            window.location.href = res.url; // ✅ Erfolgreiche Weiterleitung
           } else {
             alert("Kurz-URL nicht gefunden!");
             setLoading(false);
