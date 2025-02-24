@@ -7,6 +7,7 @@ export default function Home() {
   const handleShorten = async () => {
     const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/shorten/`, {
       method: "POST",
+      mode: "cors",
       headers: {
         "Content-Type": "application/json",
       },
