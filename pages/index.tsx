@@ -10,6 +10,7 @@ export default function Home() {
       mode: "cors",
       headers: {
         "Content-Type": "application/json",
+        "Origin": window.location.origin  // ✅ WICHTIG!
       },
       body: JSON.stringify({ original_url: originalUrl }),
     });
