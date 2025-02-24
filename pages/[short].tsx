@@ -11,6 +11,10 @@ export default function RedirectPage() {
       fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/${short}`, {
         method: "GET",
         redirect: "follow", // ✅ Automatische Weiterleitung aktivieren
+        mode: "cors",
+        headers: {
+          "Origin": window.location.origin  // ✅ WICHTIG!
+        }
       })
         .then((res) => {
           if (res.ok) {
