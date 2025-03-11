@@ -7,7 +7,7 @@ export default function Home() {
   const [showLoader, setShowLoader] = useState(false);
   const [copied, setCopied] = useState(false);
 
-  const handleShorten = async (event) => {
+  const handleShorten = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setShowLoader(true);
     setLoading(true);
