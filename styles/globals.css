@@ -131,3 +131,34 @@ button {
 .powered{
   font-size: 10px;
 }
+
+/* Snackbar (Popup am unteren Rand) */
+.snackbar {
+  visibility: hidden;
+  min-width: 200px;
+  background-color: rgba(51, 51, 51, 0.8);
+  color: rgb(66, 255, 85);
+  text-align: center;
+  padding: 12px;
+  position: fixed;
+  left: 50%;
+  bottom: -50px; /* Startposition außerhalb des Viewports */
+  transform: translateX(-50%);
+  border-radius: 30px;
+  border: 1px solid green;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out, bottom 0.3s ease-in-out;
+}
+
+/* Aktiviertes Snackbar-Popup (Hochfahren) */
+.snackbar.show {
+  visibility: visible;
+  opacity: 1;
+  bottom: 50px; /* Hochfahren */
+}
+
+/* Deaktiviertes Snackbar-Popup (Runterfahren) */
+.snackbar.hide {
+  opacity: 0;
+  bottom: -50px; /* Zurück nach unten */
+}

@@ -41,11 +41,17 @@ export default function Home() {
   const copyToClipboard = () => {
     navigator.clipboard.writeText(shortUrl);
     setCopied(true);
-
+  
+    setTimeout(() => {
+      document.querySelector(".snackbar")?.classList.add("hide"); // Fügt Slide-Out hinzu
+    }, 1700); // Startet Fade-Out nach 1.7 Sekunden
+  
     setTimeout(() => {
       setCopied(false);
-    }, 2000); // Check-Icon bleibt 2 Sekunden sichtbar
+      document.querySelector(".snackbar")?.classList.remove("hide"); // Entfernt Slide-Out für nächsten Klick
+    }, 2000);
   };
+  
 
   return (
     <div className="nav">
@@ -92,6 +98,11 @@ export default function Home() {
             </div>
           )}
 
+
+          {/* Kopiert-Popup */}
+          <div className={`snackbar ${copied ? "show" : ""}`}>Kopiert!</div>
+        </div>
+        <div className="footer">by peternese</div>
           {/* Loader Overlay mit Ein-/Ausfade-Effekt */}
           {showLoader && (
             <div className={`fixed inset-0 bg-black bg-opacity-80 flex flex-col justify-center items-center text-white ${loading ? "fade-in" : "fade-out"}`}>
@@ -100,29 +111,7 @@ export default function Home() {
               <p className="powered">brought to you by peternese</p>
             </div>
           )}
-        </div>
-        <div className="footer">by peternese</div>
       </div>
-
-      {/* Styles für Fade-Effekt */}
-      <style jsx>{`
-        .fade-in {
-          animation: fadeIn 0.3s ease-in-out forwards;
-        }
-        .fade-out {
-          animation: fadeOut 0.3s ease-in-out forwards;
-        }
-        
-        @keyframes fadeIn {
-          0% { opacity: 0; }
-          100% { opacity: 1; }
-        }
-        
-        @keyframes fadeOut {
-          0% { opacity: 1; }
-          100% { opacity: 0; }
-        }
-      `}</style>
     </div>
   );
 }
