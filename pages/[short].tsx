@@ -13,5 +13,5 @@ export default function RedirectPage() {
     }
   }, [router.isReady, short]);
 
-  return <p>Leite weiter...</p>;
+  return <p>Leitende weiter...</p>;
 }
