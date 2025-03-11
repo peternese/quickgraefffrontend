@@ -13,5 +13,8 @@ export default function RedirectPage() {
     }
   }, [router.isReady, short]);
 
-  return <p>Leitende weiter...</p>;
+  return <div className={`fixed inset-0 bg-black bg-opacity-80 flex flex-col justify-center items-center text-white`}>
+  <span className="loader"></span>
+  <p className="mt-4 text-lg font-semibold">Bitte warten Sie...</p>
+</div>;
 }

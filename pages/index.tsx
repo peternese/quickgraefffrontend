@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 export default function Home() {
   const [originalUrl, setOriginalUrl] = useState("");
@@ -40,7 +40,10 @@ export default function Home() {
   const copyToClipboard = () => {
     navigator.clipboard.writeText(shortUrl);
     setCopied(true);
-    setTimeout(() => setCopied(false), 1500);
+
+    setTimeout(() => {
+      setCopied(false);
+    }, 2000); // Check-Icon bleibt 2 Sekunden sichtbar
   };
 
   return (
@@ -69,13 +72,21 @@ export default function Home() {
                 {shortUrl}
               </a>
               
-              {/* Copy Button with Icon */}
+              {/* Copy Button mit Fade-Effekt */}
               <button 
                 onClick={copyToClipboard} 
-                className="mt-2 flex items-center p-2 rounded transition"
+                className="mt-2 flex items-center p-2 rounded transition relative"
               >
-                <img src="/copy-icon-w.png" alt="Copy" className="w-5 h-5 mr-2" />
-                <span>{copied ? "Kopiert!" : "Kopieren"}</span>
+                <img 
+                  src="/copy-icon-w.png" 
+                  alt="Copy" 
+                  className={`w-9 h-5 absolute transition-opacity duration-300 ${copied ? "opacity-0" : "opacity-100"}`} 
+                />
+                <img 
+                  src="/check-icon-w.png" 
+                  alt="Copied" 
+                  className={`w-9 h-5 absolute transition-opacity duration-300 ${copied ? "opacity-100" : "opacity-0"}`} 
+                />
               </button>
             </div>
           )}
@@ -91,7 +102,7 @@ export default function Home() {
         <div className="footer">by peternese</div>
       </div>
 
-      {/* Styles for Fade-In/Out */}
+      {/* Styles für Fade-Effekt */}
       <style jsx>{`
         .fade-in {
           animation: fadeIn 0.3s ease-in-out forwards;
