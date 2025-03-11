@@ -30,6 +30,7 @@ export default function Home() {
         alert("Fehler beim Kürzen der URL Uppsss!");
       }
     } catch (error) {
+      console.error("Fehler beim Kürzen der URL:", error);
       alert("Ein Fehler ist aufgetreten!");
     } finally {
       setLoading(false);
